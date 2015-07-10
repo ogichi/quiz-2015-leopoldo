@@ -1,0 +1,4 @@
+//GET /creditos/author
+exports.creditos = function(req, res) {
+	res.render('creditos/author', {autor: 'Leopoldo Jimenez Caballero'});
+};
