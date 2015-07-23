@@ -8,10 +8,12 @@
     <link rel='stylesheet' type="text/css" media='only screen and (max-width: 480px)' href='../stylesheets/smartphone.css' />
   </head>
   <body>
-    <h2>Quiz: el juego de las preguntas></h2>
 
-    <p><%= respuesta %></p>
-    <a href="/quizes/<%= quiz.id %>"> Volver </a>
+    <table>
+	<% var i; for (i=0; i < quizes.legth; i++) {
+		%> <tr><td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td></tr><% 
+	} %>
+    </table>
 
   </body>
 </html>
