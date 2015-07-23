@@ -12,10 +12,24 @@ exports.load = function(req, res, next, quizId) {
 };
 
 // GET /quizes
-exports.index = function(req, res) {
+/*exports.index = function(req, res) {
     models.Quiz.findAll().then(function(quizes) {
 	res.render('quizes/index', { quizes: quizes});
     }).catch(function(error) {next(error);});
+};*/
+
+// GET /quizes
+exports.index = function(req, res) {  
+	 var search = req.query.search;
+	 if(search === undefined){
+		models.Quiz.findAll().then(function(quizes){
+			res.render('quizes/index', {quizes: quizes});
+		});
+	 }else{
+		models.Quiz.findAll({where : ["pregunta like ? ", '%'+ search.replace(/\s+/g, '%')+'%'], order : [["pregunta", "ASC"]]}).then(function(quizes){
+		res.render('quizes/index', {quizes: quizes});
+		});
+	 }
 };
 
 //GET /quizes/:id
